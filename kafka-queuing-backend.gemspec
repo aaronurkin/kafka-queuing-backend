@@ -26,6 +26,10 @@ Gem::Specification.new do |spec|
     'rubygems_mfa_required' => 'true'
   }
 
+  spec.add_dependency 'dotenv', '~> 2.7',   '>= 2.7.6'
+
+  spec.add_development_dependency 'rails',                '~> 5.1'
+  spec.add_development_dependency 'rake',                 '~> 13.0',  '>= 13.0.6'  
   spec.add_development_dependency 'rspec',                '~> 3.11'
   spec.add_development_dependency 'rubocop',              '~> 1.28',  '>= 1.28.2'
   spec.add_development_dependency 'rubocop-performance',  '~> 1.13',  '>= 1.13.3'
