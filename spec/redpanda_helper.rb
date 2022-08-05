@@ -27,5 +27,7 @@ RSpec.configure do |config|
     )
   end
 
+  require 'active_job/queue_adapters'
+  require_relative 'lib/active_job/queue_adapters/kafka_test_adapter'
   config.include ActiveJob::TestHelper
 end

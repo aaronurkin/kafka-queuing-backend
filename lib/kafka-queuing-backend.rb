@@ -6,6 +6,7 @@ require 'kafka-queuing-backend/version'
 require 'kafka-queuing-backend/producer_factory'
 require 'kafka-queuing-backend/consumer_factory'
 require 'kafka-queuing-backend/message_handler_factory'
+require 'active_job/queue_adapters/kafka_adapter'
 
 # == KafkaQueuingBackend
 #
