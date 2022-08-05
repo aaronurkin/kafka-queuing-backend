@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   }
 
   spec.add_dependency 'dotenv', '~> 2.7',   '>= 2.7.6'
+  spec.add_dependency 'kafka',  '~> 0.5.2'
 
   spec.add_development_dependency 'rails',                '~> 5.1'
   spec.add_development_dependency 'rake',                 '~> 13.0',  '>= 13.0.6'  
