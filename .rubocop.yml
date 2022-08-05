@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+require:
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7.0
+
+Naming/FileName:
+  Enabled: false
