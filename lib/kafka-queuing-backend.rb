@@ -3,6 +3,7 @@
 require 'yaml'
 require 'dotenv/load'
 require 'kafka-queuing-backend/version'
+require 'kafka-queuing-backend/producer_factory'
 
 # == KafkaQueuingBackend
 #
@@ -34,7 +35,7 @@ module KafkaQueuingBackend
 
     private
       def raise_missing_configuration_error(attribute)
-        raise ArgumentError, "The 'attribute' argument is missing" if attribute.nil?
+        raise ArgumentError, "The 'attribute' argument is missing" if attribute.nil? || attribute.empty?
         raise MissingConfigurationError, attribute
       end
   end
@@ -42,7 +43,7 @@ module KafkaQueuingBackend
   class MissingConfigurationError < StandardError
     def initialize(attribute)
       raise ArgumentError, "The 'attribute' argument is missing" if attribute.nil?
-      super("The '#{attribute}' configuration is missing")#' in the #{KafkaQueuingBackend.config_path}' configuration file")
+      super("The '#{attribute}' configuration is missing")
     end
   end
 end
