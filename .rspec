@@ -1,4 +1,5 @@
 --color
 --format documentation
 --order rand
+--seed 44193
 --require spec_helper
