@@ -13,8 +13,11 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 require 'kafka-queuing-backend'
 
 RSpec.configure do |config|
+  config.include RakeUtils
   config.include FileManager
 end
 
 include FileManager
 add_initializer
+
+Rails.application.load_tasks if defined?(Rails)
