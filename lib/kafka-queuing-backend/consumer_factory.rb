@@ -9,9 +9,11 @@ module KafkaQueuingBackend
         case KafkaQueuingBackend.provider
         when :kafka
           kafka_consumer_options = {
-
+            'group.id': group,
+            'bootstrap.servers': KafkaQueuingBackend.brokers,
+            'enable.auto.commit': !options.fetch(:disable_auto_commit, true),
           }
-          KafkaConsumer.new(name: name, group: group, options: kafka_consumer_options)
+          KafkaConsumer.new(name: name, options: kafka_consumer_options)
         else
           raise "Unknown provider: #{KafkaQueuingBackend.provider}"
         end

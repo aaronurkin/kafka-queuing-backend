@@ -5,23 +5,14 @@ require 'securerandom'
 require 'kafka-queuing-backend/message_handler_factory'
 
 class KafkaConsumer
-  attr_reader :id, :name, :group
+  attr_reader :id, :name
 
-  def initialize(name:, group:, options: {})
+  def initialize(name:, options: {})
     @id       = SecureRandom.uuid
     @name     = name
-    @group    = group
     @options  = options
     @thread   = Thread.current
-
-    # TODO: Map KafkaConsumer options to the kafka gem config
-    config    = Kafka::Config.new(
-      "group.id": group,
-      "bootstrap.servers": KafkaQueuingBackend.brokers,
-      "enable.auto.commit": !options.fetch(:disable_auto_commit, true),
-    )
-
-    @instance = Kafka::Consumer.new config
+    @instance = Kafka::Consumer.new(Kafka::Config.new(options))
   end
 
   def subscribe(topics)
@@ -52,8 +43,8 @@ class KafkaConsumer
     @instance.close unless @instance.nil?
   end
 
-  def handle(message)
-    raise "The 'message' argument is required" if message.nil?
+  def group
+    @options.fetch(:'group.id')
   end
 
   def stop

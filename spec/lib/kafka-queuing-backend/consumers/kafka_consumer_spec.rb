@@ -6,7 +6,9 @@ RSpec.describe KafkaConsumer do
   let(:test_consumer) {
     KafkaConsumer.new(
       name: 'test_consumer',
-      group: 'test_consumers_group'
+      options: {
+        "group.id": 'test_consumers_group'
+      }
     )
   }
 
